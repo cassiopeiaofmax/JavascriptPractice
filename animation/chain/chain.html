@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>chain</title>
+    <script src="chain.js"></script>
+    <style>
+        body,div,ul,li {
+            margin:0;
+            padding: 0;
+        }
+        ul,li {
+            list-style: none;
+        }
+        ul li {
+            width: 200px;
+            height: 100px;
+            background-color: aquamarine;
+            margin-top: 20px;
+            border: 1px solid #000;
+            opacity: 0.3;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var element = document.getElementById('li');
+            element.onmousemove = function () {
+                startMove(element,'width',400,function () {
+                    startMove(element,'height',200,function () {
+                        startMove(element,'opacity',100);
+                    });
+                });
+            };
+            element.onmouseout = function () {
+                startMove(element, 'opacity',30,function () {
+                    startMove(element,'height',100,function () {
+                        startMove(element,'width',200);
+                    })
+                })
+            };
+        }
+    </script>
+</head>
+<body>
+<div>
+    <ul>
+        <li id="li"></li>
+    </ul>
+</div>
+</body>
+</html>
