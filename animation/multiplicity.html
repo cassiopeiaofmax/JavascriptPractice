@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>multiplicity</title>
+    <style>
+        body,div,ul,li {
+            margin:0;
+            padding: 0;
+        }
+        ul,li {
+            list-style: none;
+        }
+        ul li {
+            width: 200px;
+            height: 100px;
+            background-color: aquamarine;
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var lists = document.getElementsByTagName('li');
+            for(var i=0;i<lists.length;i++){
+                lists[i].timer = null;
+                lists[i].onmousemove = function(){
+                    onMove(this,400);
+                };
+                lists[i].onmouseout = function(){
+                    onMove(this,200);
+                };
+            }
+        };
+        function onMove(obj,target) {
+            clearInterval(obj.timer);
+            obj.timer = setInterval(function () {
+                if(obj.offsetWidth < target){
+                    obj.style.width = obj.offsetWidth + 10 + 'px';
+                }else if(obj.offsetWidth > target){
+                    obj.style.width = obj.offsetWidth - 10 + 'px';
+                }
+                else{
+                    clearInterval(obj.timer);
+                }
+            },30)
+        }
+    </script>
+</head>
+<body>
+<div>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+</body>
+</html>

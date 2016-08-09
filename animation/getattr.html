@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>getAttribute</title>
+    <style>
+        body,div,ul,li {
+            margin:0;
+            padding: 0;
+        }
+        ul,li {
+            list-style: none;
+        }
+        ul li {
+            width: 200px;
+            height: 100px;
+            background-color: aquamarine;
+            margin-top: 20px;
+            border: 1px solid #000;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var lists = document.getElementsByTagName('li');
+            for(var i=0;i<lists.length;i++){
+                lists[i].timer = null;
+                lists[i].onmousemove = function(){
+                    onMove(this,400);
+                };
+                lists[i].onmouseout = function(){
+                    onMove(this,200);
+                };
+            }
+        };
+        function onMove(obj,target) {
+            clearInterval(obj.timer);
+            obj.timer = setInterval(function () {
+                if(parseInt(getStyle(obj,'width')) < target){
+                    obj.style.width = parseInt(getStyle(obj,'width')) + 10 + 'px';
+                }else if(parseInt(getStyle(obj,'width')) > target){
+                    obj.style.width = parseInt(getStyle(obj,'width')) - 10 + 'px';
+                }
+                else{
+                    clearInterval(obj.timer);
+                }
+            },30)
+        }
+        
+        function getStyle(obj, attr) {
+            return getComputedStyle(obj)[attr];
+        }
+        
+    </script>
+</head>
+<body>
+<div>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+</body>
+</html>
