@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>animation</title>
+    <style>
+        body,div,span {
+            margin:0;
+            padding:0;
+        }
+        #div {
+            top: 0;
+            left: -200px;
+            width: 200px;
+            height: 200px;
+            position: relative;
+            background-color: aquamarine;
+        }
+
+        #div span {
+            top: 75px;
+            left: 200px;
+            width: 20px;
+            height: 50px;
+            position: absolute;
+            background-color: aqua;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var oDiv = document.getElementById('div');
+            oDiv.onmouseover = function () {
+                onMove(0);
+            };
+            oDiv.onmouseout = function () {
+                onMove(-200);
+            }
+        };
+        var timer = null;
+        function onMove(target) {
+            clearInterval(timer);
+            var oDiv = document.getElementById('div');
+            timer = setInterval(function () {
+                if(oDiv.offsetLeft == target){
+                    clearInterval(timer) ;
+                }else{
+                    if(target > oDiv.offsetLeft){
+                        oDiv.style.left = oDiv.offsetLeft + 10 + 'px';
+                    }else{
+                        oDiv.style.left = oDiv.offsetLeft - 10 + 'px';
+                    }
+                }
+            }, 30);
+
+        }
+    </script>
+</head>
+<body>
+<div id="div">
+    <span id="span">滑块</span>
+</div>
+</body>
+</html>

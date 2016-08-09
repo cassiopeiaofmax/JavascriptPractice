@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>opacity</title>
+    <style>
+        body,div {
+            margin: 0;
+            padding: 0;
+        }
+        #div {
+            width: 200px;
+            height: 200px;
+            background-color: crimson;
+            opacity: 0.3;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var oDiv = document.getElementById('div');
+            oDiv.onmouseover = function(){
+                onMove(100);
+            };
+            oDiv.onmouseout = function () {
+                onMove(30);
+            };
+        };
+        var opacity = 30;
+        var timer = null;
+        function onMove(target) {
+           clearInterval(timer);
+            var oDiv = document.getElementById('div');
+            timer = setInterval(function () {
+                if(opacity == target){
+                    clearInterval(timer);
+                }else{
+                    if(opacity < target){
+                        opacity += 10;
+                        oDiv.style.opacity = opacity/100;
+                    }else{
+                        opacity -= 10;
+                        oDiv.style.opacity = opacity/100;
+                    }
+                }
+            }, 30);
+        }
+    </script>
+</head>
+<body>
+<div id="div"></div>
+</body>
+</html>
