@@ -11,7 +11,6 @@ function startMove(obj, json, fn) {
     clearInterval(obj.timer);
     obj.timer = setInterval(function () {
         for (attr in json) {
-            console.log(attr);
             if (attr == 'opacity') {
                 icur = Math.round(parseFloat(getStyle(obj, attr)) * 100);
             } else {
