@@ -130,7 +130,7 @@
     area.scrollTop=0;
     area.innerHTML+=area.innerHTML;//克隆一份一样的内容
     function startScroll(){
-        time=setInterval("scrollUp()",speed);
+        time=setInterval(scrollUp,speed);
         area.scrollTop++;
     }
     function scrollUp(){
